@@ -1,10 +1,11 @@
 :root {
   --olive: #3f4325;
   --olive-hover: #30331c;
-  --charcoal: #20211e;
-  --muted: #686a61;
-  --soft-line: rgba(63, 67, 37, 0.35);
-  --shadow: 0 14px 38px rgba(31, 33, 29, 0.16);
+  --charcoal: #2b2926;
+  --muted: #77746d;
+  --soft-olive: rgba(63, 67, 37, 0.08);
+  --focus-ring: rgba(63, 67, 37, 0.24);
+  --shadow: 0 10px 30px rgba(31, 33, 29, 0.12);
 }
 
 * {
@@ -26,44 +27,30 @@ button {
   font: inherit;
 }
 
+/* Squarespace already provides the Humor title and description. */
+.deck__header {
+  display: none;
+}
+
 .deck {
-  width: min(100%, 920px);
+  width: 100%;
   margin: 0 auto;
-  padding: 12px 20px 28px;
+  padding: 10px 20px 30px;
   text-align: center;
-}
-
-.deck__header h1 {
-  margin: 0;
-  color: var(--charcoal);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(2.35rem, 6vw, 4.25rem);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-}
-
-.deck__header p {
-  margin: 12px auto 28px;
-  max-width: 620px;
-  color: var(--muted);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(1rem, 2.4vw, 1.2rem);
-  font-style: normal;
-  line-height: 1.5;
 }
 
 .card-stage {
   display: grid;
   place-items: center;
-  min-height: 340px;
+  min-height: 280px;
+  padding-top: 4px;
 }
 
 .card-image {
   display: block;
-  width: min(100%, 790px);
+  width: min(100%, 700px);
   height: auto;
-  border-radius: 5px;
+  border-radius: 4px;
   box-shadow: var(--shadow);
   opacity: 1;
   transform: translateY(0);
@@ -74,11 +61,11 @@ button {
 
 .card-image.is-changing {
   opacity: 0;
-  transform: translateY(5px);
+  transform: translateY(4px);
 }
 
 .status {
-  padding: 48px 20px;
+  padding: 42px 20px;
   color: var(--muted);
   font-size: 1rem;
 }
@@ -87,19 +74,19 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
   margin-top: 24px;
 }
 
 .button {
-  min-height: 48px;
-  padding: 11px 20px;
+  min-height: 44px;
+  padding: 10px 18px;
   border: 1px solid var(--olive);
   border-radius: 999px;
   cursor: pointer;
-  font-size: 0.98rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 500;
   transition:
     transform 120ms ease,
     background-color 120ms ease,
@@ -112,13 +99,13 @@ button {
 }
 
 .button:focus-visible {
-  outline: 3px solid rgba(63, 67, 37, 0.25);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
 .button:disabled {
   cursor: not-allowed;
-  opacity: 0.42;
+  opacity: 0.4;
   transform: none;
 }
 
@@ -138,28 +125,34 @@ button {
 }
 
 .button--secondary:hover {
-  background: rgba(63, 67, 37, 0.07);
+  background: var(--soft-olive);
 }
 
 .counter {
   min-height: 1.5em;
-  margin: 14px 0 0;
+  margin: 12px 0 0;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   letter-spacing: 0.02em;
 }
 
-@media (max-width: 620px) {
+@media (max-width: 760px) {
   .deck {
-    padding: 8px 10px 22px;
+    padding: 6px 12px 24px;
   }
 
-  .deck__header p {
-    margin-bottom: 20px;
+  .card-image {
+    width: min(100%, 620px);
+  }
+}
+
+@media (max-width: 560px) {
+  .deck {
+    padding-inline: 6px;
   }
 
   .card-stage {
-    min-height: 250px;
+    min-height: 220px;
   }
 
   .controls {
