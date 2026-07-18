@@ -29,7 +29,7 @@ button {
 
 .deck {
   width: 100%;
-  max-width: 760px;
+  max-width: 980px;
   margin: 0 auto;
   padding: 12px 20px 28px;
   text-align: center;
@@ -54,7 +54,7 @@ button {
 
 .card-image {
   display: block;
-  width: min(100%, 560px);
+ width: min(100%, 900px);
   height: auto;
   border-radius: 4px;
   box-shadow: var(--shadow);
