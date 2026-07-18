@@ -3,27 +3,73 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>NDF Humor Deck</title>
-  <meta name="description" content="Original humor cards from The Neurodivergent Fundraiser.">
+
+  <meta
+    name="description"
+    content="Original humor cards from The Neurodivergent Fundraiser."
+  >
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <main class="deck" aria-labelledby="deck-title">
-    <header class="deck__header">
-      <h1 id="deck-title">Draw a Card</h1>
-      <p>Sometimes the only way through it is to laugh.</p>
-    </header>
+  <main class="deck" aria-label="Interactive humor card deck">
+
+    <div class="draw-area">
+      <button
+        id="draw-button"
+        type="button"
+        class="button button--primary"
+      >
+        Draw a Card
+      </button>
+
+      <p class="draw-copy">
+        Sometimes the only way through it is to laugh.
+      </p>
+    </div>
+
     <section class="card-stage" aria-live="polite">
-      <div class="status" id="status">Loading cards…</div>
-      <img id="card-image" class="card-image" alt="" hidden>
+      <div class="status" id="status">
+        Loading cards…
+      </div>
+
+      <img
+        id="card-image"
+        class="card-image"
+        alt=""
+        hidden
+      >
     </section>
+
     <nav class="controls" aria-label="Humor card controls">
-      <button id="previous-button" type="button" class="button button--secondary">← Previous</button>
-      <button id="draw-button" type="button" class="button button--primary">🎲 Draw Another</button>
-      <button id="next-button" type="button" class="button button--secondary">Next →</button>
+      <button
+        id="previous-button"
+        type="button"
+        class="button button--secondary"
+      >
+        ← Previous
+      </button>
+
+      <button
+        id="next-button"
+        type="button"
+        class="button button--secondary"
+      >
+        Next →
+      </button>
     </nav>
-    <p id="counter" class="counter" aria-live="polite"></p>
+
+    <p
+      id="counter"
+      class="counter"
+      aria-live="polite"
+    ></p>
+
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
