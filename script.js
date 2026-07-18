@@ -1,0 +1,11 @@
+(() => {
+const image=document.getElementById("card-image"),status=document.getElementById("status"),counter=document.getElementById("counter"),previousButton=document.getElementById("previous-button"),drawButton=document.getElementById("draw-button"),nextButton=document.getElementById("next-button");
+let cards=[],currentIndex=0,changeTimer;
+const disable=v=>[previousButton,drawButton,nextButton].forEach(b=>b.disabled=v);
+function showCard(index,animate=true){if(!cards.length)return;currentIndex=(index+cards.length)%cards.length;const card=cards[currentIndex];clearTimeout(changeTimer);const apply=()=>{image.src=card.src;image.alt=card.alt?.trim()||`Humor card ${currentIndex+1} of ${cards.length} from The Neurodivergent Fundraiser`;};if(animate&&!matchMedia("(prefers-reduced-motion: reduce)").matches){image.classList.add("is-changing");changeTimer=setTimeout(apply,160)}else apply();counter.textContent=`${currentIndex+1} of ${cards.length}`;}
+image.addEventListener("load",()=>{image.hidden=false;status.hidden=true;requestAnimationFrame(()=>image.classList.remove("is-changing"))});
+image.addEventListener("error",()=>{image.hidden=true;status.hidden=false;status.textContent="This card could not be loaded."});
+previousButton.onclick=()=>showCard(currentIndex-1);nextButton.onclick=()=>showCard(currentIndex+1);drawButton.onclick=()=>{if(cards.length<2)return;let i=currentIndex;while(i===currentIndex)i=Math.floor(Math.random()*cards.length);showCard(i)};
+document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")showCard(currentIndex-1);if(e.key==="ArrowRight")showCard(currentIndex+1)});
+(async()=>{disable(true);try{const r=await fetch(`cards.json?v=${Date.now()}`,{cache:"no-store"});if(!r.ok)throw new Error(r.status);cards=(await r.json()).filter(c=>c&&typeof c.src==="string");if(!cards.length){status.textContent="No humor cards have been added yet.";return}showCard(0,false);disable(cards.length<2)}catch(e){console.error(e);status.textContent="The humor deck is still being prepared. Please check back soon."}})();
+})();
